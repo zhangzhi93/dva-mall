@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layout, Menu, Dropdown, Icon } from 'antd';
-import styles from './Header.less';
+import styles from './index.less';
 import logo from '../assets/windCar.svg';
 //import userHead from '../../assets/head.png';
 
@@ -16,21 +16,18 @@ const menu = (
 );
 
 class HeaderLayout extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <Header className={styles.header}>
         <div className={styles.headerContent}>
           <div className={styles.logo}>
             <img src={logo} alt="" />
+            <p className={styles.title}>Dva Mall</p>
           </div>
           <div className={styles.userinfo}>
             <Dropdown overlay={menu} trigger={['click']} placement={'bottomCenter'}>
-              <a href="#">
-                 admin <Icon type="down" />
+              <a href="javascript:">
+                admin <Icon type="down" />
               </a>
             </Dropdown>
           </div>

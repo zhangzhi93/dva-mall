@@ -1,26 +1,29 @@
 import React from 'react';
 import { connect } from 'dva';
 import { Router, Route } from 'dva/router';
-import { Layout} from 'antd';
+import { Layout } from 'antd';
 import Header from '../components/HeaderMain';
+import Footer from '../components/Footer';
+import SliderMenu from './SliderMenu';
 import List from './list';
-import styles from './IndexPage.css';
-const { Footer, Sider, Content } = Layout;
+import styles from './IndexPage.less';
+const { Content, Sider } = Layout;
 
-class IndexPage extends React.Component{
-  constructor(props){
-    super(props);
-  }
-  render(){
-    const { children } = this.props;
-    return(
+class IndexPage extends React.Component {
+  render() {
+    return (
       <Layout>
         <Header>Header</Header>
         <Layout>
-          <Route path="/" exact component={List} />
+          <Sider className={styles.sliderContainer} width={220}>
+            <SliderMenu />
+          </Sider>
         </Layout>
-        <Footer>Footer</Footer>
-    </Layout>
+        <Layout style={{ marginLeft: 220 }}>
+          <Route path="/" exact component={List} />
+          <Footer />
+        </Layout>
+      </Layout>
     );
   }
 }
