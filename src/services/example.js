@@ -1,5 +1,5 @@
-import request from '../utils/request';
+import axios from '../utils/axios';
 
-export function query() {
-  return request('/api/users');
+export function get_list(params) {
+  return axios.get('/extend/activity', params);
 }
