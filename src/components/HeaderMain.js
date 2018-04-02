@@ -8,7 +8,7 @@ const { Header } = Layout;
 const menu = (
   <Menu>
     <Menu.Item key="0">
-      <a href="#">Cart</a>
+      <span>Cart</span>
     </Menu.Item>
     <Menu.Divider />
     <Menu.Item key="1">logout</Menu.Item>

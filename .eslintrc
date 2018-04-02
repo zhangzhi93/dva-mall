@@ -1,3 +1,7 @@
 {
-  "extends": "umi"
+  "extends": "umi",
+  "rules": {
+    "quotes": ["error", "single"],
+    "no-script-url":"off"
+  }
 }
