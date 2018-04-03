@@ -57,13 +57,6 @@ class productList extends React.Component {
               onChange:this.handleTableChange,
               showTotal: totalData => (<div>共<span className="page-text">{totalData}</span>条数据</div>)
             }}
-            // pagination={{
-            //   total: get_listData.total,
-            //   current: get_listData.pageNum,
-            //   size: 'small',
-            //   onChange:this.handleTableChange,
-            //   showTotal: totalData => (<div>共<span className="page-text">{totalData}</span>条数据</div>),
-            // }}
             loading={loading}
              />
         </div>
