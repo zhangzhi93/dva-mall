@@ -2,31 +2,47 @@
 //引入服务端接口
 import { get_list } from '../services/example';
 export default {
-  namespace: 'example',
+  namespace: 'tableList',
   state: {
-    get_list:{
-
+    loading: false,
+    get_listData: {
+      data: [],
+      last: true,
+      pageNum: 1,
+      pageSize: 10,
+      pages: 1,
+      total: 0
     }
   },
 
   subscriptions: {
-    setup({ dispatch, history }) {  // eslint-disable-line
+    setup({ dispatch, history }) {
+      history.listen(location => {
+        if (location.pathname === '/') {
+          dispatch({
+            type: 'get_list'
+          })
+        }
+      });
     },
   },
 
   effects: {
     *get_list({ payload }, { call, put }) {  // eslint-disable-line
-      yield put({ type: 'loadingChange', payload: true });
-      const { res } = yield call(get_list, payload);
-      yield put({ type: 'save', payload: { get_activityData: res } });
-      yield put({ type: 'loadingChange', payload: false });
+      yield put({ type: 'loadingChange', payload: { loading: true } });
+      const { data } = yield call(get_list, payload);
+      yield put({ type: 'save', payload: { get_listData: data } });
+      yield put({ type: 'loadingChange', payload: { loading: false } });
     },
   },
 
   reducers: {
-    save(state, action) {
-      return { ...state, ...action.payload };
+    save(state, { payload }) {
+      return { ...state, ...payload };
     },
+    loadingChange(state, { payload }) {
+      return { ...state, ...payload };
+    }
   },
 
 };

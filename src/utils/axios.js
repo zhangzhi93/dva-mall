@@ -2,10 +2,9 @@ import axios from 'axios';
 import Qs from 'qs';
 
 const instance = axios.create({
-  baseURL: '/service1210/',
+  baseURL: '',
   headers: {
     'Content-Type': 'application/json',
-    'AccessToken': 'a9fb1a153bb042a7a8dd97d726ce62f1',
   },
   // 超时为5s 上线后是3s
   timeout: 5000,
