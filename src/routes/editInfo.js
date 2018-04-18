@@ -16,7 +16,8 @@ class EditInfo extends React.Component {
     this.state = {}
   }
 
-  handleSubmit = () => {
+  handleSubmit = (e) => {
+    e.preventDefault();
     const { dispatch, form } = this.props;
     const { validateFields } = form;
     validateFields((err, values) => {
