@@ -12,7 +12,6 @@ let db = Mock.mock({
 
 export default {
   'GET /api/getList': (req, res) => {
-    console.log('success');
     let resData = {
       data: [],
       pages: 1,
@@ -28,6 +27,21 @@ export default {
     resData.pages = Math.ceil(db.data.length / resData.pageSize);
     resData.total = db.data.length;
     res.status(200).json(resData);
+  },
+  'GET /api/editInfo': (req, res) => {
+    const { query } = req;
+    const { Name } = query;
+    if (Name) {
+      res.status(200).json({
+        status: '0',
+        Name: Name,
+        //id: Mock.Random.integer(10, 20)
+      });
+    } else {
+      res.status(200).json({
+        status: '1'
+      });
+    }
   },
   'GET /api/user'(req, res) {
     res.json({

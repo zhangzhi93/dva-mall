@@ -7,6 +7,8 @@ import Footer from '../components/Footer';
 import SliderMenu from './SliderMenu';
 import List from './list';
 import styles from './IndexPage.less';
+import EditInfo from './editInfo';
+
 const { Content, Sider } = Layout;
 
 class IndexPage extends React.Component {
@@ -20,13 +22,10 @@ class IndexPage extends React.Component {
           </Sider>
           <Content style={{ marginLeft: 220 }}>
             <Route path="/" exact component={List} />
+            <Route path="/edit" component={EditInfo} />
             <Footer />
           </Content>
         </Layout>
-        {/* <Layout style={{ marginLeft: 220 }}>
-          <Route path="/" exact component={List} />
-          <Footer />
-        </Layout> */}
       </Layout>
     );
   }

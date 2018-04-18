@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'dva';
-import { Layout, Table } from 'antd';
+import { Layout, Table, Row, Col, Button } from 'antd';
 import styles from './list.less';
+import { Link } from 'react-router-dom';
 
 const columns = [{
   title: 'id',
@@ -24,7 +25,7 @@ const columns = [{
 class productList extends React.Component {
   constructor(props) {
     super(props);
-    this.state={}
+    this.state = {}
   }
 
   handleTableChange = (pagination) => {
@@ -47,6 +48,13 @@ class productList extends React.Component {
           <h3><span>Home >> </span>Goods</h3>
           <h1>GoodsList</h1>
         </div>
+        <Row>
+          <Col span={8}>
+            <Button>
+              <Link to="/edit">提交</Link>
+            </Button>
+          </Col>
+        </Row>
         <div className="table-container">
           <Table
             dataSource={data}
@@ -54,11 +62,11 @@ class productList extends React.Component {
             pagination={{
               total: get_listData.total,
               current: get_listData.pageNum,
-              onChange:this.handleTableChange,
+              onChange: this.handleTableChange,
               showTotal: totalData => (<div>共<span className="page-text">{totalData}</span>条数据</div>)
             }}
             loading={loading}
-             />
+          />
         </div>
       </Layout>
     );
