@@ -49,9 +49,9 @@ class productList extends React.Component {
           <h1>GoodsList</h1>
         </div>
         <Row>
-          <Col span={8}>
+          <Col span={8} offset={2}>
             <Button>
-              <Link to="/edit">提交</Link>
+              <Link to="/edit">编辑</Link>
             </Button>
           </Col>
         </Row>

@@ -15,18 +15,18 @@ class IndexPage extends React.Component {
   render() {
     return (
       <Layout>
-        <Header>Header</Header>
-        <Layout>
+        <Header />
+        <Layout style={{ marginTop: 64}}>
           <Sider className={styles.sliderContainer} width={220}>
-            <SliderMenu />
-          </Sider>
-          <Content style={{ marginLeft: 220 }}>
-            <Route path="/" exact component={List} />
-            <Route path="/edit" component={EditInfo} />
-            <Footer />
-          </Content>
-        </Layout>
+          <SliderMenu />
+        </Sider>
+        <Content style={{ marginLeft: 220 }}>
+          <Route path="/" exact component={List} />
+          <Route path="/edit" component={EditInfo} />
+          <Footer />
+        </Content>
       </Layout>
+      </Layout >
     );
   }
 }
