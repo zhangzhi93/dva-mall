@@ -5,9 +5,10 @@ import { Layout } from 'antd';
 import Header from '../components/HeaderMain';
 import Footer from '../components/Footer';
 import SliderMenu from './SliderMenu';
-import List from './list';
+import List from './TableList/List';
+import EditList from './TableList/EditList';
+import '../theme.less';
 import styles from './IndexPage.less';
-import EditInfo from './editInfo';
 
 const { Content, Sider } = Layout;
 
@@ -16,16 +17,15 @@ class IndexPage extends React.Component {
     return (
       <Layout>
         <Header />
-        <Layout style={{ marginTop: 64}}>
+        <Layout style={{ marginTop: 64 }}>
           <Sider className={styles.sliderContainer} width={220}>
-          <SliderMenu />
-        </Sider>
-        <Content style={{ marginLeft: 220 }}>
-          <Route path="/" exact component={List} />
-          <Route path="/edit" component={EditInfo} />
-          <Footer />
-        </Content>
-      </Layout>
+            <SliderMenu />
+          </Sider>
+          <Content style={{ marginLeft: 220, padding: 10 }}>
+            <Route path="/" exact component={List} />
+            <Route path="/edit/:id" component={EditList} />
+          </Content>
+        </Layout>
       </Layout >
     );
   }

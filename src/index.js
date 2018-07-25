@@ -1,6 +1,7 @@
 import dva from 'dva';
+import moment from 'moment';
 import './index.css';
-
+moment.locale('zh-cn');
 // 1. Initialize
 const app = dva();
 

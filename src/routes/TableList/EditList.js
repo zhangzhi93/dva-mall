@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'dva';
 import { routerRedux } from 'dva/router';
-import { Layout, Row, Col, Form, Input, Button, message } from 'antd';
-import styles from './list.less';
+import { Layout, Row, Col, Form, Input, Button, message, Card, DatePicker } from 'antd';
+import styles from './index.less';
 
 const FormItem = Form.Item;
 const formItemLayout = {
-  labelCol: { span: 6 },
-  wrapperCol: { span: 16 },
+  labelCol: { span: 3 },
+  wrapperCol: { span: 6 },
 };
 
 class EditInfo extends React.Component {
@@ -44,25 +44,32 @@ class EditInfo extends React.Component {
     const { getFieldDecorator } = form;
     return (
       <Layout>
-        <Form onSubmit={this.handleSubmit}>
-          <Row>
-            <Col span={8}>
-              <FormItem {...formItemLayout} label="用户昵称" >
-                {getFieldDecorator('Name', {
-                  rules: [
-                    { required: true, message: '不能为空' },
-                    { max: 5, message: '不能超过15位' },
-                  ],
-                })(
-                  <Input size="default" maxLength="5" placeholder="请输入" />,
-                )}
-              </FormItem>
-            </Col>
-            <Col span={8}>
+        <Card title="编辑">
+          <Form onSubmit={this.handleSubmit}>
+            <FormItem {...formItemLayout} label="用户昵称" >
+              {getFieldDecorator('Name', {
+                rules: [
+                  { required: true, message: '不能为空' },
+                  { max: 5, message: '不能超过15位' },
+                ],
+              })(
+                <Input size="default" maxLength="5" placeholder="请输入" />,
+              )}
+            </FormItem>
+            <FormItem {...formItemLayout} label="日期" >
+              {getFieldDecorator('Date', {
+                rules: [
+                  { required: true, message: '不能为空' },
+                ],
+              })(
+                <DatePicker placeholder="请选择日期"/>,
+              )}
+            </FormItem>
+            <Col span={24}>
               <Button type="primary" ghost htmlType="submit">提交</Button>
             </Col>
-          </Row>
-        </Form>
+          </Form>
+        </Card>
       </Layout >
     );
   }

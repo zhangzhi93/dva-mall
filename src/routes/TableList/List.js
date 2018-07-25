@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'dva';
-import { Layout, Table, Row, Col, Button } from 'antd';
-import styles from './list.less';
-import { Link } from 'react-router-dom';
+import { Link } from 'dva/router';
+import { Layout, Table, Button, Breadcrumb } from 'antd';
+import styles from './index.less';
 
+const BreadcrumbItem = Breadcrumb.Item;
 const columns = [{
   title: 'id',
   dataIndex: 'key',
@@ -20,6 +21,14 @@ const columns = [{
   title: '住址',
   dataIndex: 'address',
   key: 'address',
+}, {
+  title: '操作',
+  dataIndex: 'operate',
+  render: (text, record) => (
+    <Button>
+      <Link to={`/edit/${record.key}`}>编辑</Link>
+    </Button>
+  )
 }];
 
 class productList extends React.Component {
@@ -44,21 +53,15 @@ class productList extends React.Component {
     const { data } = get_listData;
     return (
       <Layout>
-        <div className={styles.breadNav}>
-          <h3><span>Home >> </span>Goods</h3>
-          <h1>GoodsList</h1>
-        </div>
-        <Row>
-          <Col span={8} offset={2}>
-            <Button>
-              <Link to="/edit">编辑</Link>
-            </Button>
-          </Col>
-        </Row>
-        <div className="table-container">
+        <Breadcrumb style={{ padding: '10px 0', borderBottom: '1px solid #eee' }}>
+          <BreadcrumbItem>Home</BreadcrumbItem>
+          <BreadcrumbItem><a href="javascript:">Goods</a></BreadcrumbItem>
+        </Breadcrumb>
+        <div className="user-table-container">
           <Table
             dataSource={data}
             columns={columns}
+            bordered
             pagination={{
               total: get_listData.total,
               current: get_listData.pageNum,
@@ -68,7 +71,7 @@ class productList extends React.Component {
             loading={loading}
           />
         </div>
-      </Layout>
+      </Layout >
     );
   }
 }
