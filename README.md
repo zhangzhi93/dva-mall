@@ -1,4 +1,7 @@
 # dva-mall
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/zhangzhi93/dva-mall.svg)](https://greenkeeper.io/)
+
 目标：express+mongoDB+antd+dva+react
 开发过程：antd+dva+react+mockjs
 
