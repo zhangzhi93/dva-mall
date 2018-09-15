@@ -49,7 +49,7 @@ class productList extends React.Component {
   }
 
   render() {
-    const { get_listData, loading } = this.props.tableList;
+    const { tableList: { get_listData }, loading } = this.props;
     const { data } = get_listData;
     return (
       <Layout>
@@ -79,10 +79,10 @@ class productList extends React.Component {
 productList.propTypes = {
 };
 
-function mapStateToProps(state) { //  connect 的作用在于 State -> Props 的转换，同时自动注册一个 dispatch 的方法，用以触发 action
-  const { tableList } = state;
+function mapStateToProps({ tableList, loading }) { //  connect 的作用在于 State -> Props 的转换，同时自动注册一个 dispatch 的方法，用以触发 action
   return {
-    tableList
+    tableList,
+    loading: loading.models.tableList
   };
 }
 

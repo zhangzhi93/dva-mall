@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'dva';
 import { Router, Route } from 'dva/router';
 import { Menu, Icon, Switch } from 'antd';
-import styles from './IndexPage.less';
+import styles from './Index.less';
 
 const SubMenu = Menu.SubMenu;
 

@@ -29,17 +29,14 @@ export default {
 
   effects: {
     *get_list({ payload }, { call, put }) {  // eslint-disable-line
-      yield put({ type: 'loadingChange', payload: { loading: true } });
       const { data } = yield call(get_list, payload);
       yield put({ type: 'save', payload: { get_listData: data } });
-      yield put({ type: 'loadingChange', payload: { loading: false } });
     },
+
     *edit_info({ payload, callback }, { call, put }) {
-      yield put({ type: 'loadingChange', payload: { loading: true } });
       const { data } = yield call(edit_info, payload);
       callback(data);
       yield put({ type: 'save', payload: { get_listData: data } });
-      yield put({ type: 'loadingChange', payload: { loading: false } });
     },
   },
 
@@ -47,9 +44,5 @@ export default {
     save(state, { payload }) {
       return { ...state, ...payload };
     },
-    loadingChange(state, { payload }) {
-      return { ...state, ...payload };
-    }
   },
-
 };

@@ -1,0 +1,44 @@
+.sliderContainer {
+  overflow: auto;
+  height: calc(~"100vh - 64px");
+  position: fixed;
+  left: 0;
+  border-right: 1px solid #eee;
+}
+.login {
+  width: 100vw;
+  height: 100vh;
+  background: url("../assets/background.jpg") no-repeat center;
+  background-size: 100%;
+  background-attachment: fixed;
+}
+.form {
+  position: relative;
+  width: 30vw;
+  padding: 20px 50px;
+  margin: 15vh auto 0 auto;
+  overflow: hidden;
+  background: hsla(0, 0%, 100%, .25) border-box;
+  border-radius: .3em; //box-shadow: 0 0 0 1px hsla(0, 0%, 100%, .3) inset, 0 .5em 1em rgba(0, 0, 0, 0.6);
+}
+.form::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: url("../assets/background.jpg") no-repeat center;
+  background-size: 100%;
+  background-attachment: fixed;
+  filter: blur(8px);
+}
+.loginBtn {
+  width: 100%;
+}
+.icons{
+  position: relative;
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 20px;
+}

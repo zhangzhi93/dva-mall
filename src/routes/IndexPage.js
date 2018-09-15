@@ -3,12 +3,11 @@ import { connect } from 'dva';
 import { Router, Route } from 'dva/router';
 import { Layout } from 'antd';
 import Header from '../components/HeaderMain';
-import Footer from '../components/Footer';
 import SliderMenu from './SliderMenu';
 import List from './TableList/List';
 import EditList from './TableList/EditList';
 import '../theme.less';
-import styles from './IndexPage.less';
+import styles from './Index.less';
 
 const { Content, Sider } = Layout;
 
