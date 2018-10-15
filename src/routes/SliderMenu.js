@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'dva';
-import { Router, Route } from 'dva/router';
-import { Menu, Icon, Switch } from 'antd';
+import { Link } from 'dva/router';
+import { Menu } from 'antd';
+import { MenuList } from '../utils/config';
 import styles from './Index.less';
 
-const SubMenu = Menu.SubMenu;
+const MenuItem = Menu.Item;
 
 class Sider extends React.Component {
   constructor(props) {
@@ -14,46 +15,26 @@ class Sider extends React.Component {
     }
   }
 
-  handleClick = (e) => {
-    console.log('click ', e);
-    this.setState({
-      current: e.key,
-    });
-  }
   render() {
+    const { app: { firstMenuKey, secondMenuKey } } = this.props;
+    const subMenu = MenuList.find(item => item.key == firstMenuKey);
+    const itemKey = secondMenuKey ? secondMenuKey : subMenu.MenuList[0].key;
     return (
       <div>
         <Menu
           theme='light'
-          onClick={this.handleClick}
           defaultOpenKeys={['sub1']}
-          selectedKeys={[this.state.current]}
+          selectedKeys={[itemKey]}
           mode="inline"
           style={{ borderRight: '1px solid #fff' }}
         >
-          <SubMenu key="sub1" title={<span><Icon type="mail" /><span>Navigation One</span></span>}>
-            <Menu.Item key="1">Option 1</Menu.Item>
-            <Menu.Item key="2">Option 2</Menu.Item>
-            <Menu.Item key="3">Option 3</Menu.Item>
-            <Menu.Item key="4">Option 4</Menu.Item>
-          </SubMenu>
-          <SubMenu key="sub2" title={<span><Icon type="appstore" /><span>Navigtion Two</span></span>}>
-            <Menu.Item key="5">Option 5</Menu.Item>
-            <Menu.Item key="6">Option 6</Menu.Item>
-            <SubMenu key="sub3" title="Submenu">
-              <Menu.Item key="7">Option 7</Menu.Item>
-              <Menu.Item key="8">Option 8</Menu.Item>
-            </SubMenu>
-          </SubMenu>
-          <SubMenu key="sub4" title={<span><Icon type="setting" /><span>Navigation Three</span></span>}>
-            <Menu.Item key="9">Option 9</Menu.Item>
-            <Menu.Item key="10">Option 10</Menu.Item>
-            <Menu.Item key="11">Option 11</Menu.Item>
-            <Menu.Item key="12">Option 12</Menu.Item>
-            <Menu.Item key="13">Option 12</Menu.Item>
-            <Menu.Item key="14">Option 12</Menu.Item>
-            <Menu.Item key="15">Option 12</Menu.Item>
-          </SubMenu>
+          {
+            subMenu.MenuList.map(item => (
+              <MenuItem key={item.key}>
+                <Link to={subMenu.path + item.path}>{item.name}</Link>
+              </MenuItem>
+            ))
+          }
         </Menu>
       </div>
     );
@@ -63,4 +44,8 @@ class Sider extends React.Component {
 Sider.propTypes = {
 };
 
-export default connect()(Sider);
+function mapStateToProps({ app }) {
+  return { app };
+}
+
+export default connect(mapStateToProps)(Sider);

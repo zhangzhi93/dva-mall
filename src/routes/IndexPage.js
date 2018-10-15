@@ -1,17 +1,22 @@
-import React from 'react';
+import { Component } from 'react';
 import { connect } from 'dva';
 import { Router, Route } from 'dva/router';
 import { Layout } from 'antd';
-import Header from '../components/HeaderMain';
+import Header from '../components/Header';
 import SliderMenu from './SliderMenu';
-import List from './TableList/List';
-import EditList from './TableList/EditList';
+import UserList from './User/index';
+import UserEdit from './User/UserEdit';
 import '../theme.less';
 import styles from './Index.less';
 
 const { Content, Sider } = Layout;
 
-class IndexPage extends React.Component {
+class IndexPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {}
+  }
+
   render() {
     return (
       <Layout>
@@ -21,8 +26,9 @@ class IndexPage extends React.Component {
             <SliderMenu />
           </Sider>
           <Content style={{ marginLeft: 220, padding: 10 }}>
-            <Route path="/" exact component={List} />
-            <Route path="/edit/:id" component={EditList} />
+            <Route path="/user" exact component={UserList} />
+            <Route path="/user/tags" exact component={UserList} />
+            <Route path="/user/tags/edit/:id" component={UserEdit} />
           </Content>
         </Layout>
       </Layout >
@@ -33,4 +39,8 @@ class IndexPage extends React.Component {
 IndexPage.propTypes = {
 };
 
-export default connect()(IndexPage);
+function mapStateToProps({ app }) {
+  return { app };
+}
+
+export default connect(mapStateToProps)(IndexPage);

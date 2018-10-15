@@ -7,14 +7,14 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "antd": "^3.9.2",
+    "antd": "^3.10.1",
     "axios": "^0.18.0",
     "babel-plugin-import": "^1.8.0",
     "dva": "^2.4.0",
     "dva-loading": "^2.0.5",
     "mockjs": "^1.0.1-beta3",
-    "react": "^16.5.1",
-    "react-dom": "^16.5.1"
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
   },
   "devDependencies": {
     "babel-plugin-dva-hmr": "^0.4.1",

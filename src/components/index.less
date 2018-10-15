@@ -1,40 +1,62 @@
-.header{
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: #fff;
-    font-family: "moderat",sans-serif;
-    font-size: 16px;
-    padding: 0;
-    border-bottom: 1px solid #eee;
-    z-index: 2;
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #0094d4;
+  color: #fff;
+  font-family: "moderat", sans-serif;
+  font-size: 16px;
+  padding: 0;
+  border-bottom: 1px solid #eee;
+  z-index: 2;
 }
-.headerContent{
-    padding: 0 50px;
-    height: 64px;
-    line-height: 64px;
+.headerContent {
+  padding: 0 50px;
+  overflow: hidden;
 }
-.logo{
+.logo {
+  float: left;
+  img {
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+  }
+  .title {
     display: inline-block;
-    img{
-        width: 40px;
-        height: 40px;
-        vertical-align: middle;
-    }
-    .title{
-        display: inline-block;
-        vertical-align: middle;
-        height: 40px;
-        line-height: 40px;
-        margin-bottom: 0;
-        margin-left: 15px;
-        font-size: 20px;
-    }
+    vertical-align: middle;
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 0;
+    margin-left: 15px;
+    font-size: 20px;
+  }
 }
-.userinfo{
-    float: right;
-    height: 100%;
-    a{
-        display: inline-block;
+.userinfo {
+  float: right;
+  height: 100%;
+  a {
+    display: inline-block;
+    color: #fff;
+  }
+}
+.menu {
+  float: left;
+  height: 100%;
+  margin-left: 50px;
+  background-color: #0094d4;
+  :global {
+    .ant-menu-item {
+      a {
+        height: 62px;
+        width: 60px;
+        text-align: center;
+        padding: 10px 0;
+        line-height: normal;
+        color: #fff;
+      }
     }
+    .ant-menu-item-selected {
+      background-color: #0083ba !important;
+    }
+  }
 }

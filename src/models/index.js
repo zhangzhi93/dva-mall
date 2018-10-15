@@ -5,6 +5,7 @@ export default {
   namespace: 'tableList',
   state: {
     loading: false,
+    firstMenuKey:'',
     get_listData: {
       data: [],
       last: true,
@@ -18,11 +19,7 @@ export default {
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen(location => {
-        if (location.pathname === '/') {
-          dispatch({
-            type: 'get_list'
-          })
-        }
+
       });
     },
   },

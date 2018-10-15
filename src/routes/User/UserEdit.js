@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 import { connect } from 'dva';
 import { routerRedux } from 'dva/router';
 import { Layout, Row, Col, Form, Input, Button, message, Card, DatePicker } from 'antd';
@@ -10,7 +10,7 @@ const formItemLayout = {
   wrapperCol: { span: 6 },
 };
 
-class EditInfo extends React.Component {
+class UserEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {}
@@ -62,7 +62,7 @@ class EditInfo extends React.Component {
                   { required: true, message: '不能为空' },
                 ],
               })(
-                <DatePicker placeholder="请选择日期"/>,
+                <DatePicker placeholder="请选择日期" />,
               )}
             </FormItem>
             <Col span={24}>
@@ -75,15 +75,15 @@ class EditInfo extends React.Component {
   }
 }
 
-EditInfo.propTypes = {
+UserEdit.propTypes = {
 };
 
-function mapStateToProps(state) { //  connect 的作用在于 State -> Props 的转换，同时自动注册一个 dispatch 的方法，用以触发 action
-  return state.tableList;
+function mapStateToProps({ tableList }) { //  connect 的作用在于 State -> Props 的转换，同时自动注册一个 dispatch 的方法，用以触发 action
+  return tableList;
 }
 
-const WrappedEditInfo = Form.create()(EditInfo);
+const WrappedUserEdit = Form.create()(UserEdit);
 
 export default connect(
   mapStateToProps,
-)(WrappedEditInfo);
+)(WrappedUserEdit);

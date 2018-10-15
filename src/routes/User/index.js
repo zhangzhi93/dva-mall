@@ -26,7 +26,7 @@ const columns = [{
   dataIndex: 'operate',
   render: (text, record) => (
     <Button>
-      <Link to={`/edit/${record.key}`}>编辑</Link>
+      <Link to={`user/tags/edit/${record.key}`}>编辑</Link>
     </Button>
   )
 }];
@@ -35,6 +35,13 @@ class productList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {}
+  }
+
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'tableList/get_list'
+    })
   }
 
   handleTableChange = (pagination) => {
