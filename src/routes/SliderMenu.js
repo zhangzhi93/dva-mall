@@ -16,7 +16,8 @@ class Sider extends React.Component {
   }
 
   render() {
-    const { app: { firstMenuKey, secondMenuKey } } = this.props;
+    let { app: { firstMenuKey, secondMenuKey } } = this.props;
+    firstMenuKey = firstMenuKey ? firstMenuKey : 'index';
     const subMenu = MenuList.find(item => item.key == firstMenuKey);
     const itemKey = secondMenuKey ? secondMenuKey : subMenu.MenuList[0].key;
     return (

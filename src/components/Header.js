@@ -26,7 +26,8 @@ class HeaderLayout extends Component {
   }
 
   render() {
-    const { app: { firstMenuKey} } = this.props;
+    let { app: { firstMenuKey } } = this.props;
+    firstMenuKey = firstMenuKey ? firstMenuKey : 'index';
 
     return (
       <Header className={styles.header}>

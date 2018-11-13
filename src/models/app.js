@@ -2,7 +2,7 @@ export default {
   namespace: 'app',
 
   state: {
-    firstMenuKey: '',
+    firstMenuKey: 'index',
     secondMenuKey: '',
   },
 

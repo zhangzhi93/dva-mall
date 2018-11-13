@@ -1,4 +1,4 @@
-import React from 'react';
+import { Component } from 'react';
 import { connect } from 'dva';
 import { Link } from 'dva/router';
 import { Layout, Table, Button, Breadcrumb } from 'antd';
@@ -8,11 +8,12 @@ const BreadcrumbItem = Breadcrumb.Item;
 const columns = [{
   title: 'id',
   dataIndex: 'key',
-  key: 'id',
+  key: 'key',
 }, {
   title: '姓名',
   dataIndex: 'name',
   key: 'name',
+  width:300
 }, {
   title: '年龄',
   dataIndex: 'age',
@@ -21,17 +22,18 @@ const columns = [{
   title: '住址',
   dataIndex: 'address',
   key: 'address',
+  width: 400
 }, {
   title: '操作',
   dataIndex: 'operate',
   render: (text, record) => (
-    <Button>
+    <Button type="primary" size="small">
       <Link to={`user/tags/edit/${record.key}`}>编辑</Link>
     </Button>
   )
 }];
 
-class productList extends React.Component {
+class UserList extends Component {
   constructor(props) {
     super(props);
     this.state = {}
@@ -40,14 +42,14 @@ class productList extends React.Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
-      type: 'tableList/get_list'
+      type: 'user/get_list'
     })
   }
 
   handleTableChange = (pagination) => {
     const { dispatch } = this.props;
     dispatch({
-      type: 'tableList/get_list',
+      type: 'user/get_list',
       payload: {
         pageSize: 10,
         page: pagination
@@ -56,7 +58,7 @@ class productList extends React.Component {
   }
 
   render() {
-    const { tableList: { get_listData }, loading } = this.props;
+    const { user: { get_listData }, loading } = this.props;
     const { data } = get_listData;
     return (
       <Layout>
@@ -83,14 +85,14 @@ class productList extends React.Component {
   }
 }
 
-productList.propTypes = {
+UserList.propTypes = {
 };
 
-function mapStateToProps({ tableList, loading }) { //  connect 的作用在于 State -> Props 的转换，同时自动注册一个 dispatch 的方法，用以触发 action
+function mapStateToProps({ user, loading }) { //  connect 的作用在于 State -> Props 的转换，同时自动注册一个 dispatch 的方法，用以触发 action
   return {
-    tableList,
-    loading: loading.models.tableList
+    user,
+    loading: loading.models.user
   };
 }
 
-export default connect(mapStateToProps)(productList);
+export default connect(mapStateToProps)(UserList);

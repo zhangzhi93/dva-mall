@@ -1,11 +1,10 @@
 
 //引入服务端接口
-import { get_list, edit_info } from '../services/example';
+import { get_list, edit_info, getItemInfoById } from '../services/user';
 export default {
-  namespace: 'tableList',
+  namespace: 'user',
   state: {
     loading: false,
-    firstMenuKey:'',
     get_listData: {
       data: [],
       last: true,
@@ -13,7 +12,8 @@ export default {
       pageSize: 10,
       pages: 1,
       total: 0
-    }
+    },
+    getItemInfoByIdData: {}
   },
 
   subscriptions: {
@@ -28,6 +28,11 @@ export default {
     *get_list({ payload }, { call, put }) {  // eslint-disable-line
       const { data } = yield call(get_list, payload);
       yield put({ type: 'save', payload: { get_listData: data } });
+    },
+    //
+    *getItemInfoById({ payload }, { call, put }) {  // eslint-disable-line
+      const { data } = yield call(getItemInfoById, payload);
+      yield put({ type: 'save', payload: { getItemInfoByIdData: data } });
     },
 
     *edit_info({ payload, callback }, { call, put }) {

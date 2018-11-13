@@ -16,6 +16,17 @@ class UserEdit extends Component {
     this.state = {}
   }
 
+  componentDidMount() {
+    console.log(this.props);
+    const { dispatch, match: { params: { id } } } = this.props;
+    dispatch({
+      type: 'user/getItemInfoById',
+      payload: {
+        id
+      }
+    })
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
     const { dispatch, form } = this.props;
@@ -40,17 +51,17 @@ class UserEdit extends Component {
   }
 
   render() {
-    const { form } = this.props;
-    const { getFieldDecorator } = form;
+    const { form: { getFieldDecorator }, user: { getItemInfoByIdData: { data } } } = this.props;
     return (
       <Layout>
         <Card title="编辑">
           <Form onSubmit={this.handleSubmit}>
             <FormItem {...formItemLayout} label="用户昵称" >
               {getFieldDecorator('Name', {
+                initialValue: data ? data.name : '',
                 rules: [
                   { required: true, message: '不能为空' },
-                  { max: 5, message: '不能超过15位' },
+                  { max: 15, message: '不能超过15位' },
                 ],
               })(
                 <Input size="default" maxLength="5" placeholder="请输入" />,
@@ -78,8 +89,8 @@ class UserEdit extends Component {
 UserEdit.propTypes = {
 };
 
-function mapStateToProps({ tableList }) { //  connect 的作用在于 State -> Props 的转换，同时自动注册一个 dispatch 的方法，用以触发 action
-  return tableList;
+function mapStateToProps({ user }) { //  connect 的作用在于 State -> Props 的转换，同时自动注册一个 dispatch 的方法，用以触发 action
+  return { user };
 }
 
 const WrappedUserEdit = Form.create()(UserEdit);

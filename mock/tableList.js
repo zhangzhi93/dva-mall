@@ -28,6 +28,17 @@ export default {
     resData.total = db.data.length;
     res.status(200).json(resData);
   },
+  'GET /api/getItemInfoById/:id': (req, res) => {
+    let resData = {
+      data: {},
+      status: 200,
+      msg: 'SUCCESS'
+    };
+    const { params: { id } } = req
+    resData.data = db.data.find(item => item.key == id);
+    console.log(resData);
+    res.status(200).json(resData);
+  },
   'GET /api/editInfo': (req, res) => {
     const { query } = req;
     const { Name } = query;
