@@ -52,3 +52,13 @@ export const MenuList = [{
     icon: 'shopping-cart',
   }]
 }]
+
+export function SubmenuArr() {
+  let sublist = {};
+  MenuList.forEach(element => {
+    element.MenuList.forEach(item => {
+      sublist[element.path + item.path] = item.name
+    })
+  });
+  return sublist;
+}

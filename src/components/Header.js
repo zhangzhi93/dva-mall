@@ -45,7 +45,7 @@ class HeaderLayout extends Component {
             {
               MenuList.map(item => (
                 <MenuItem key={item.key}>
-                  <Link to={item.path}>
+                  <Link to={item.path + item.MenuList[0].path}>
                     <Icon type={item.icon} className="header-icon" />
                     {item.name}
                   </Link>

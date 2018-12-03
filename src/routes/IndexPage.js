@@ -1,9 +1,10 @@
 import { Component } from 'react';
 import { connect } from 'dva';
-import { Router, Route } from 'dva/router';
+import { Router, Route, Redirect } from 'dva/router';
 import { Layout } from 'antd';
 import Header from '../components/Header';
 import SliderMenu from './SliderMenu';
+import SubMenuList from '../components/SubMenuList';
 import UserList from './User/index';
 import UserEdit from './User/UserEdit';
 import '../theme.less';
@@ -26,7 +27,10 @@ class IndexPage extends Component {
             <SliderMenu />
           </Sider>
           <Content style={{ marginLeft: 220, padding: 10 }}>
-            <Route path="/user" exact component={UserList} />
+            <SubMenuList />
+            {/* <Route path="/user" exact component={(() =>
+              <Redirect to="/user/tags" />
+            )} /> */}
             <Route path="/user/tags" exact component={UserList} />
             <Route path="/user/tags/edit/:id" component={UserEdit} />
           </Content>
