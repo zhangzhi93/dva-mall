@@ -6,7 +6,7 @@ export default {
   state: {
     firstMenuKey: 'index',
     secondMenuKey: '',
-    subMenuList: [{ url: '/index/setting', name: '首页' }],
+    subMenuList: [{ url: '/index/setting', name: '首页', isActive: true }],
   },
 
   subscriptions: {
@@ -39,18 +39,22 @@ export default {
       return { ...state, ...payload };
     },
     addMenu(state, { payload }) {
-      const { url } = payload;
+      let { url } = payload;
+      url = url === '/' ? '/index/setting' : url;
       let menulist = state.subMenuList;
       let ishasMenu = [];
-      menulist.forEach(item => {
+      menulist.forEach((item, index) => {
         if (item.url === url) {
+          menulist[index].isActive = true;
           ishasMenu.push(item);
+        } else {
+          menulist[index].isActive = false;
         }
       });
-      if (ishasMenu.length === 0) {
+      if (ishasMenu.length === 0 && url !== '/') {
         const list = SubmenuArr();
         const name = list[url];
-        menulist.push({ url, name })
+        menulist.push({ url, name, isActive: true })
       }
       return { ...state, subMenuList: menulist };
     }

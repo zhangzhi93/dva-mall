@@ -17,7 +17,7 @@ class SubMenuList extends Component {
         {
           subMenuList.map(item => (
             <Link to={item.url} key={item.url}>
-              <div className={styles.submenu_item + ' ' + styles.active}>
+              <div className={styles.submenu_item + ' ' + (item.isActive ? styles.active : '')}>
                 <span>{item.name}</span>
                 <i className={styles.close}></i>
               </div>
